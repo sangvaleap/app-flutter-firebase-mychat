@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:chat_app/model/chat_user.dart';
 import 'package:chat_app/view/widgets/chat_room_item.dart';
 import 'package:chat_app/view/widgets/custom_textfield.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 class ChatRoomPage extends StatefulWidget {
   const ChatRoomPage({super.key});
@@ -47,25 +47,19 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
     if (args.isNotEmpty) {
       String currentUserId = FirebaseAuth.instance.currentUser!.uid;
       _peer = args["peer"];
-      _groupChatId =
-          _chatRoomViewModel.generateGroupChatId(currentUserId, _peer.id);
+      _groupChatId = _chatRoomViewModel.generateGroupChatId(currentUserId, _peer.id);
 
-      _chatRoomViewModel.checkIsUserBlocked(
-          currentUserId: currentUserId, peerId: _peer.id);
+      _chatRoomViewModel.checkIsUserBlocked(currentUserId: currentUserId, peerId: _peer.id);
       _chatRoomViewModel.loadMessages(_groupChatId);
-      _chatRoomViewModel.checkIsBlockedPeer(
-          currentUserId: currentUserId, peerId: _peer.id);
+      _chatRoomViewModel.checkIsBlockedPeer(currentUserId: currentUserId, peerId: _peer.id);
 
-      if (args.containsKey('fromRoute') &&
-          args["fromRoute"] == AppRoute.chatPage) {
-        _chatRoomViewModel.updateRecentChatSeen(
-            currentUserId: currentUserId, peerId: _peer.id);
+      if (args.containsKey('fromRoute') && args["fromRoute"] == AppRoute.chatPage) {
+        _chatRoomViewModel.updateRecentChatSeen(currentUserId: currentUserId, peerId: _peer.id);
       }
     }
 
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels >
-          (_scrollController.position.maxScrollExtent * 0.7)) {
+      if (_scrollController.position.pixels > (_scrollController.position.maxScrollExtent * 0.7)) {
         _chatRoomViewModel.loadMessages(_groupChatId);
       }
     });
@@ -82,14 +76,12 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
               body: Padding(
                 padding: EdgeInsets.only(
                   top: 10,
-                  bottom:
-                      MediaQuery.of(context).viewInsets.bottom > 0 ? 80 : 70,
+                  bottom: MediaQuery.of(context).viewInsets.bottom > 0 ? 80 : 70,
                 ),
                 child: _buildChats(),
               ),
               floatingActionButton: _buildFooter(),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.miniCenterDocked,
+              floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
             ),
     );
   }
@@ -97,8 +89,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
   _buildAppBar() {
     return AppBar(
       centerTitle: true,
-      title: _OnlineStatusWidget(
-          chatRoomViewModel: _chatRoomViewModel, peer: _peer),
+      title: _OnlineStatusWidget(chatRoomViewModel: _chatRoomViewModel, peer: _peer),
       actions: [
         IconButton(
           onPressed: _onUserAction,
@@ -126,9 +117,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   _onReportUser() {
     Get.back();
-    _chatRoomViewModel.reportUser(
-        currentUserId: FirebaseAuth.instance.currentUser!.uid,
-        peerId: _peer.id);
+    _chatRoomViewModel.reportUser(currentUserId: FirebaseAuth.instance.currentUser!.uid, peerId: _peer.id);
     AppUtil.showSnackBar(
       AppLocalizations.of(context)!.messageAfterReport,
       duration: 3,
@@ -137,9 +126,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
 
   _onBlockUser() async {
     Get.back();
-    _chatRoomViewModel.toggleBlockPeer(
-        currentUserId: FirebaseAuth.instance.currentUser!.uid,
-        peerId: _peer.id);
+    _chatRoomViewModel.toggleBlockPeer(currentUserId: FirebaseAuth.instance.currentUser!.uid, peerId: _peer.id);
     var message = _chatRoomViewModel.isBlockedPeer
         ? AppLocalizations.of(context)!.messageAfterBlock
         : AppLocalizations.of(context)!.messageAfterUnblock;
@@ -240,8 +227,7 @@ class _OnlineStatusWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    peer.onlineStatus == null ||
-                            peer.onlineStatus == UserOnlineStatus.offline
+                    peer.onlineStatus == null || peer.onlineStatus == UserOnlineStatus.offline
                         ? const Icon(
                             Icons.cancel,
                             size: 11,
@@ -274,10 +260,7 @@ class _OnlineStatusWidget extends StatelessWidget {
 }
 
 class _SendMessageBlock extends StatelessWidget {
-  _SendMessageBlock(
-      {required this.groupChatId,
-      required this.peer,
-      required this.messageController});
+  _SendMessageBlock({required this.groupChatId, required this.peer, required this.messageController});
   final _chatRoomViewModel = Get.find<ChatRoomViewModel>();
   final String groupChatId;
   final ChatUser peer;
@@ -309,16 +292,15 @@ class _SendMessageBlock extends StatelessWidget {
         ),
         IconButton(
           onPressed: () async {
-            final res =
-                await _chatRoomViewModel.sendChatMessageWithPushNotification(
-                    content: messageController.text,
-                    type: ChatMessageType.text,
-                    groupChatId: groupChatId,
-                    currentUser: ChatUser.fromFirebaseUser(
-                      FirebaseAuth.instance.currentUser!,
-                      AppGlobal.instance.deviceToken,
-                    ),
-                    peer: peer);
+            final res = await _chatRoomViewModel.sendChatMessageWithPushNotification(
+                content: messageController.text,
+                type: ChatMessageType.text,
+                groupChatId: groupChatId,
+                currentUser: ChatUser.fromFirebaseUser(
+                  FirebaseAuth.instance.currentUser!,
+                  AppGlobal.instance.deviceToken,
+                ),
+                peer: peer);
             if (!res && context.mounted) {
               AppUtil.showSnackBar(
                 AppLocalizations.of(context)!.failedToSendAMessage,
@@ -349,9 +331,7 @@ class _UnblockButton extends StatelessWidget {
       Expanded(
         child: TextButton(
           onPressed: () {
-            _chatRoomViewModel.toggleBlockPeer(
-                currentUserId: FirebaseAuth.instance.currentUser!.uid,
-                peerId: peer.id);
+            _chatRoomViewModel.toggleBlockPeer(currentUserId: FirebaseAuth.instance.currentUser!.uid, peerId: peer.id);
           },
           child: Text(
             AppLocalizations.of(context)!.unblock,

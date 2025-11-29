@@ -6,7 +6,7 @@ import 'package:chat_app/model/chat_user.dart';
 import 'package:chat_app/viewmodel/chat_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 import 'package:chat_app/core/services/analytics_service.dart';
 import 'package:chat_app/core/utils/app_util.dart';
 
@@ -28,8 +28,7 @@ class AuthViewModel extends GetxController {
   }
 
   hideShowPassword() => _isObscurePassword.value = !_isObscurePassword.value;
-  hideShowConfirmPassword() =>
-      _isObscureConPassword.value = !_isObscureConPassword.value;
+  hideShowConfirmPassword() => _isObscureConPassword.value = !_isObscureConPassword.value;
 
   bool get isObscurePassword => _isObscurePassword.value;
   bool get isObscureConPassword => _isObscureConPassword.value;
@@ -37,12 +36,10 @@ class AuthViewModel extends GetxController {
   set loading(bool value) => _loading.value = value;
   bool get loading => _loading.value;
 
-  Future<bool> signInWithEmailPassword(
-      {required String email, required String password}) async {
+  Future<bool> signInWithEmailPassword({required String email, required String password}) async {
     try {
       if (!_validateEmail(email) || !_validatePassword(password)) return false;
-      final res = await authService.signInWithEmailPassword(
-          email: email, password: password);
+      final res = await authService.signInWithEmailPassword(email: email, password: password);
       AppUtil.debugPrint(res.user);
       userService.addUser(
         ChatUser.fromFirebaseUser(res.user!, AppGlobal.instance.deviceToken),
@@ -62,10 +59,7 @@ class AuthViewModel extends GetxController {
   }
 
   Future<bool> registerWithEmailPassword(
-      {required String name,
-      required String email,
-      required String password,
-      required String confirmPassword}) async {
+      {required String name, required String email, required String password, required String confirmPassword}) async {
     if (!validateForm(name, email, password, confirmPassword)) return false;
     try {
       final res = await authService.registerWithEmailPassword(
@@ -95,10 +89,8 @@ class AuthViewModel extends GetxController {
   }
 
   Future signOut() async {
-    await userService.updateUser(authService.currentUser!.uid, {
-      ChatUserConstant.onlineStatus: UserOnlineStatus.offline,
-      ChatUserConstant.deviceToken: ''
-    });
+    await userService.updateUser(authService.currentUser!.uid,
+        {ChatUserConstant.onlineStatus: UserOnlineStatus.offline, ChatUserConstant.deviceToken: ''});
     await authService.signOut();
     await Get.delete<ChatViewModel>();
     _analyticsService.logEvent(eventName: "signOut");
@@ -157,8 +149,7 @@ class AuthViewModel extends GetxController {
     return true;
   }
 
-  bool validateForm(
-      String name, String email, String password, String confirmPassword) {
+  bool validateForm(String name, String email, String password, String confirmPassword) {
     if (!_validateName(name) ||
         !_validateEmail(email) ||
         !_validatePassword(password) ||

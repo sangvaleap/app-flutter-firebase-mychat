@@ -4,7 +4,7 @@ import 'package:chat_app/viewmodel/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 import 'package:chat_app/view/widgets/custom_dialog.dart';
 import 'package:chat_app/view/widgets/custom_image.dart';
@@ -50,8 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
         visible: !keyboardIsOpen,
         child: _LoginButton(local: _local),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
     );
   }
 
@@ -73,8 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
             Center(
               child: Text(
                 _local.register,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
               ),
             ),
             const SizedBox(
@@ -161,10 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
           onTap: () {
             _authViewModel.hideShowPassword();
           },
-          child: Icon(
-              _authViewModel.isObscurePassword
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined,
+          child: Icon(_authViewModel.isObscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
               color: Colors.grey),
         ),
         obscureText: _authViewModel.isObscurePassword,
@@ -185,10 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
           onTap: () {
             _authViewModel.hideShowConfirmPassword();
           },
-          child: Icon(
-              _authViewModel.isObscureConPassword
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined,
+          child: Icon(_authViewModel.isObscureConPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
               color: Colors.grey),
         ),
         obscureText: _authViewModel.isObscureConPassword,

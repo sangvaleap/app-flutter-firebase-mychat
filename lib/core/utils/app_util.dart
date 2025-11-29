@@ -9,7 +9,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import 'package:chat_app/view/widgets/term_service.dart';
 import 'package:chat_app/core/utils/app_constant.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 /// AppUtil provides helper methods
 class AppUtil {
@@ -138,8 +138,8 @@ class AppUtil {
     }
   }
 
-  static Future<String> showCupertinoSelection(BuildContext context,
-      String initValue, List<LocaleModel> languages) async {
+  static Future<String> showCupertinoSelection(
+      BuildContext context, String initValue, List<LocaleModel> languages) async {
     bool isDone = false;
     String? tempValue;
     int initSelectedIndex = 0;
@@ -183,8 +183,7 @@ class AppUtil {
                   ),
                   TextButton(
                     style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.zero),
+                      padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
                     ),
                     onPressed: () {
                       isDone = true;
@@ -193,8 +192,7 @@ class AppUtil {
                     },
                     child: Text(
                       AppLocalizations.of(context)!.done,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor, fontSize: 16),
+                      style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
                     ),
                   ),
                 ],

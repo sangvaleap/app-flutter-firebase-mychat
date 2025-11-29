@@ -9,9 +9,7 @@ class AppConstant {
   static const themeModeDefaultSystem = 'darkModeSystem';
   static const animateBodyDuration = 1000;
   static const delayAnimateBodyDuration = 1000;
-  static const appStoreLink =
-      'https://apps.apple.com/us/app/my-chat/id6447117872?platform=iphone';
-  static const playStoreLink =
-      "https://play.google.com/store/apps/details?id=com.sangvaleap.chatapp";
+  static const appStoreLink = 'https://apps.apple.com/us/app/my-chat/id6447117872?platform=iphone';
+  static const playStoreLink = "https://play.google.com/store/apps/details?id=com.sangvaleap.chatapp";
   static const storesLink = "https://urlgeni.us/Ct47";
 }

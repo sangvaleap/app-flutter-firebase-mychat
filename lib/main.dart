@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:chat_app/core/services/analytics_service.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 import 'package:chat_app/core/utils/app_lifecycle_tracker.dart';
 
@@ -32,8 +32,7 @@ void main() async {
     _initDeviceToken();
     await AppController.init();
     if (!kIsWeb) {
-      FlutterError.onError =
-          FirebaseCrashlytics.instance.recordFlutterFatalError;
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     }
     runApp(AppLifecycleTracker(
       child: const MyApp(),

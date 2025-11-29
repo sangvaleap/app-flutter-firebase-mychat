@@ -13,7 +13,7 @@ import 'package:chat_app/viewmodel/profile_view_model.dart';
 import 'package:chat_app/view/widgets/chat_item.dart';
 import 'package:chat_app/view/widgets/custom_image.dart';
 import 'package:chat_app/view/widgets/round_textbox.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 class ChatPage extends StatelessWidget {
   final ChatViewModel _chatViewModel = Get.find();
@@ -70,8 +70,7 @@ class ChatPage extends StatelessWidget {
       () => SliverList(
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            RecentUserChat recentUserChat =
-                _chatViewModel.recentUserChats[index];
+            RecentUserChat recentUserChat = _chatViewModel.recentUserChats[index];
             return Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: ChatItem(
@@ -142,10 +141,8 @@ class _TitleWidget extends StatelessWidget {
               builder: (controller) {
                 return CustomBox(
                   padding: 1,
-                  child: AppUtil.checkIsNull(
-                          FirebaseAuth.instance.currentUser!.photoURL)
-                      ? RandomAvatar(FirebaseAuth.instance.currentUser!.uid,
-                          trBackground: true, width: 40, height: 40)
+                  child: AppUtil.checkIsNull(FirebaseAuth.instance.currentUser!.photoURL)
+                      ? RandomAvatar(FirebaseAuth.instance.currentUser!.uid, trBackground: true, width: 40, height: 40)
                       : CustomImage(
                           FirebaseAuth.instance.currentUser!.photoURL!,
                           imageType: ImageType.network,

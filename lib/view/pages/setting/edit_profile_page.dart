@@ -10,7 +10,7 @@ import 'package:chat_app/viewmodel/profile_view_model.dart';
 import 'package:chat_app/view/widgets/custom_box.dart';
 import 'package:chat_app/view/widgets/custom_image.dart';
 import 'package:chat_app/view/widgets/custom_textfield.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -39,8 +39,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _AppBar(
-          profileViewModel: _profileViewModel, nameController: _nameController),
+      appBar: _AppBar(profileViewModel: _profileViewModel, nameController: _nameController),
       body: _buildBody(),
     );
   }
@@ -131,8 +130,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
             () => Text(
               AppLocalizations.of(context)!.save,
               style: TextStyle(
-                color:
-                    _profileViewModel.saving ? AppColor.darker : AppColor.white,
+                color: _profileViewModel.saving ? AppColor.darker : AppColor.white,
                 fontSize: 17,
               ),
             ),
@@ -237,8 +235,7 @@ class _ProfileImageChecker extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AppUtil.checkIsNull(_profileViewModel.getUserPhotoUrl())
-            ? RandomAvatar(FirebaseAuth.instance.currentUser!.uid,
-                trBackground: true, width: 78, height: 78)
+            ? RandomAvatar(FirebaseAuth.instance.currentUser!.uid, trBackground: true, width: 78, height: 78)
             : badges.Badge(
                 onTap: () {
                   _profileViewModel.removeUserPhotoUrl();

@@ -6,7 +6,7 @@ import 'package:chat_app/viewmodel/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 import 'package:chat_app/view/widgets/custom_dialog.dart';
 import 'package:chat_app/view/widgets/custom_image.dart';
@@ -56,8 +56,7 @@ class _LoginPageState extends State<LoginPage> {
         visible: !keyboardIsOpen,
         child: _RegisterButton(local: _local),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
     );
   }
 
@@ -139,10 +138,7 @@ class _LoginPageState extends State<LoginPage> {
           onTap: () {
             _authViewModel.hideShowPassword();
           },
-          child: Icon(
-              _authViewModel.isObscurePassword
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined,
+          child: Icon(_authViewModel.isObscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
               color: Colors.grey),
         ),
         obscureText: _authViewModel.isObscurePassword,
@@ -292,8 +288,7 @@ class _LoginButton extends StatelessWidget {
             onPressed: () async {
               FocusScope.of(context).unfocus();
               var res = await _authViewModel.signInWithEmailPassword(
-                  email: _emailController.text,
-                  password: _passwordController.text);
+                  email: _emailController.text, password: _passwordController.text);
               if (res) {
                 btnController.success();
               } else {

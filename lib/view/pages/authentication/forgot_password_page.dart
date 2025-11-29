@@ -8,7 +8,7 @@ import 'package:chat_app/core/style/app_color.dart';
 import 'package:chat_app/view/widgets/custom_dialog.dart';
 import 'package:chat_app/view/widgets/custom_image.dart';
 import 'package:chat_app/view/widgets/custom_textfield.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -19,8 +19,7 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _authViewModel = Get.find<AuthViewModel>();
-  final RoundedLoadingButtonController _btnSubmitController =
-      RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _btnSubmitController = RoundedLoadingButtonController();
   final TextEditingController _emailController = TextEditingController();
 
   @override
@@ -54,8 +53,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             Center(
               child: Text(
                 AppLocalizations.of(context)!.forgotPassword,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
             ),
             const SizedBox(height: 50),
@@ -83,9 +81,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   Widget _buildLoginButton() {
     return _SubmitButton(
-        btnSubmitController: _btnSubmitController,
-        authViewModel: _authViewModel,
-        emailController: _emailController);
+        btnSubmitController: _btnSubmitController, authViewModel: _authViewModel, emailController: _emailController);
   }
 
   Widget _buildEmailBlock() {
@@ -126,8 +122,7 @@ class _SubmitButton extends StatelessWidget {
             controller: _btnSubmitController,
             onPressed: () async {
               FocusScope.of(context).unfocus();
-              var res = await _authViewModel
-                  .submitResetPasswordEmail(_emailController.text);
+              var res = await _authViewModel.submitResetPasswordEmail(_emailController.text);
               if (res) {
                 _btnSubmitController.success();
               } else {

@@ -16,7 +16,7 @@ import 'package:chat_app/core/style/app_color.dart';
 import 'package:chat_app/view/widgets/custom_image.dart';
 import 'package:chat_app/view/widgets/custom_input_dialog.dart';
 import 'package:chat_app/view/widgets/settting_item.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 class SettingPage extends StatelessWidget {
   SettingPage({super.key});
@@ -150,10 +150,8 @@ class SettingPage extends StatelessWidget {
 
   _onChangeLanguage(BuildContext context) {
     List<LocaleModel> languages = [
-      LocaleModel(
-          languageCode: 'en', name: AppLocalizations.of(context)!.english),
-      LocaleModel(
-          languageCode: 'es', name: AppLocalizations.of(context)!.spanish)
+      LocaleModel(languageCode: 'en', name: AppLocalizations.of(context)!.english),
+      LocaleModel(languageCode: 'es', name: AppLocalizations.of(context)!.spanish)
     ];
     AppUtil.showCupertinoSelection(
       context,
@@ -179,8 +177,7 @@ class SettingPage extends StatelessWidget {
       if (value != null) {
         AppUtil.debugPrint(value);
         _profileViewModel.sendFeedback(value);
-        AppUtil.showSnackBar(
-            AppLocalizations.of(context)!.thankYouForYourfeedback);
+        AppUtil.showSnackBar(AppLocalizations.of(context)!.thankYouForYourfeedback);
       }
     });
   }
@@ -240,17 +237,15 @@ class _ProfileImage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomBox(
-          child:
-              AppUtil.checkIsNull(FirebaseAuth.instance.currentUser!.photoURL)
-                  ? RandomAvatar(FirebaseAuth.instance.currentUser!.uid,
-                      trBackground: true, width: 70, height: 70)
-                  : CustomImage(
-                      FirebaseAuth.instance.currentUser!.photoURL!,
-                      imageType: ImageType.network,
-                      width: 70,
-                      height: 70,
-                      radius: 100,
-                    ),
+          child: AppUtil.checkIsNull(FirebaseAuth.instance.currentUser!.photoURL)
+              ? RandomAvatar(FirebaseAuth.instance.currentUser!.uid, trBackground: true, width: 70, height: 70)
+              : CustomImage(
+                  FirebaseAuth.instance.currentUser!.photoURL!,
+                  imageType: ImageType.network,
+                  width: 70,
+                  height: 70,
+                  radius: 100,
+                ),
         )
       ],
     );

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:chat_app/core/router/app_route.dart';
 import 'package:chat_app/viewmodel/chat_user_view_model.dart';
 import 'package:chat_app/view/widgets/round_textbox.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -82,8 +82,7 @@ class _UserPageState extends State<UserPage> {
             return ChatUserItem(
               user: user,
               onTap: () {
-                Get.toNamed(AppRoute.chatRoomPage,
-                    arguments: {"peer": user, "fromRoute": AppRoute.userPage});
+                Get.toNamed(AppRoute.chatRoomPage, arguments: {"peer": user, "fromRoute": AppRoute.userPage});
               },
             );
           },

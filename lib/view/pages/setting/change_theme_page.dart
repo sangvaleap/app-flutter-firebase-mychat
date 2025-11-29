@@ -6,7 +6,7 @@ import 'package:chat_app/core/utils/app_util.dart';
 import 'package:chat_app/viewmodel/theme_view_model.dart';
 import 'package:chat_app/core/style/app_color.dart';
 import 'package:chat_app/core/style/app_theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:chat_app/l10n/app_localizations.dart';
 
 class ChangeThemePage extends StatelessWidget {
   ChangeThemePage({super.key});
@@ -225,9 +225,7 @@ class _ThemeModeItem extends StatelessWidget {
       width: double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: mode == ThemeMode.dark
-            ? AppThemes.darkTheme.cardColor
-            : AppThemes.lightTheme.cardColor,
+        color: mode == ThemeMode.dark ? AppThemes.darkTheme.cardColor : AppThemes.lightTheme.cardColor,
         borderRadius: BorderRadius.circular(4),
         boxShadow: [
           BoxShadow(
