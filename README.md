@@ -36,7 +36,7 @@ Dart, Flutter, Firebase Auth, Firestore, Firebase Storage, Firebase Cloud Messag
 
 
 # Links
-- [Apple App store and Google Play store](https://urlgeni.us/Ct47)
+- [Apple App store and Google Play store](https://play.google.com/store/apps/details?id=com.sangvaleap.chatapp)
 - [Video](https://youtu.be/rI9i-BvXrBw)
 - [LinkedIn](https://www.linkedin.com/in/sangvaleap-v/)
 - [Twitter](https://twitter.com/sangvaleap)
